@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace pms_utils::misc {
-std::expected<std::vector<char>, int> try_readfile(std::filesystem::path &path) {
+std::expected<std::vector<char>, int> try_readfile(const std::filesystem::path &path) {
     auto file_size = std::filesystem::file_size(path);
 
     if (file_size == 0) {
