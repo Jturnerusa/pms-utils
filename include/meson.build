@@ -11,6 +11,7 @@ install_headers(
         'pms-utils/repo/repo.hpp',
         'pms-utils/profile/profile.hpp',
         'pms-utils/profile/profile_parser.hpp',
+        'pms-utils/vdb/vdb.hpp',
         'pms-utils/misc/macro-begin.hpp',
         'pms-utils/misc/macro-end.hpp',
         'pms-utils/misc/meta.hpp',
