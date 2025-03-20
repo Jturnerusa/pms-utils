@@ -99,8 +99,17 @@ bool check_file(const Ebuild &ebuild, Metrics &metrics) {
 }
 } // namespace
 
-int main() {
-    constexpr auto REPO = "/var/db/repos/gentoo";
+int main(int argc, char **argv) {
+    std::span<char *> args{argv, static_cast<std::size_t>(argc)};
+
+    std::filesystem::path REPO;
+
+    if (argc < 2) {
+        REPO = std::filesystem::path{"/var/db/repos/gentoo"};
+    } else {
+        REPO = std::filesystem::path{args[1]};
+    }
+
     std::atomic<bool> success = true;
     Metrics metrics;
     using Md = boost::describe::describe_members<ebuild::Metadata, boost::describe::mod_any_access>;

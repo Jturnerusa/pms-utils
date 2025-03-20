@@ -28,8 +28,18 @@ void thread_main() {
 
 } // namespace
 
-int main() {
-    constexpr auto REPO = "/var/db/repos/gentoo";
+// NOLINTBEGIN
+
+int main(int argc, char **argv) {
+    std::span<char *> args{argv, static_cast<std::size_t>(argc)};
+
+    std::filesystem::path REPO;
+
+    if (argc < 2) {
+        REPO = std::filesystem::path{"/var/db/repos/gentoo"};
+    } else {
+        REPO = std::filesystem::path{args[1]};
+    }
 
     std::set<std::filesystem::path> ebuilds;
     for (const std::filesystem::directory_entry &elem : std::filesystem::recursive_directory_iterator{REPO}) {
@@ -97,3 +107,5 @@ int main() {
     }
     return ret;
 }
+
+// NOLINTEND
